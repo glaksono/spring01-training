@@ -21,4 +21,5 @@ public class AddExpenseRequestDTO implements Serializable {
     public void setAmount(Long amount) {
         this.amount = amount;
     }
+
 }
