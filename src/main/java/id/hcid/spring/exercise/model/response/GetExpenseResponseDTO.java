@@ -5,6 +5,7 @@ public class GetExpenseResponseDTO {
     private String expense;
     private Long amount;
 
+
     public String getExpense() {
         return expense;
     }

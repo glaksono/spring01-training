@@ -11,6 +11,8 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.List;
+
 @RestController
 @RequestMapping("/expense")
 public class ExpenseController {
@@ -32,9 +34,9 @@ public class ExpenseController {
     // Use this method for retrieving all the expenses here. Please use appropriate response / request model (if needed)
 
     @GetMapping
-    public ResponseEntity<GetExpenseResponseDTO> getExpense(@RequestBody GetExpenseRequestDTO data){
-        GetExpenseResponseDTO result = getExpenseService.getExpense(data);
-        return new ResponseEntity<GetExpenseResponseDTO>(result, HttpStatus.OK);
+    public ResponseEntity<List<GetExpenseResponseDTO>> getExpense(@RequestBody GetExpenseRequestDTO data){
+        List<GetExpenseResponseDTO> result = getExpenseService.getExpense(data);
+        return new ResponseEntity(result, HttpStatus.OK);
     }
 
 }

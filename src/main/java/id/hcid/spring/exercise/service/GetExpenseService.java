@@ -16,19 +16,21 @@ public class GetExpenseService implements IGetExpense{
     private IExpenseRepository expenseRepository;
 
     @Override
-    public GetExpenseResponseDTO getExpense(GetExpenseRequestDTO expenseDTO) {
+    public List<GetExpenseResponseDTO> getExpense(GetExpenseRequestDTO expenseDTO) {
         List<Expense> expenseList = expenseRepository.findAll();
+
         List<GetExpenseResponseDTO> expenseList2 = new ArrayList<GetExpenseResponseDTO>();
 
         for(int i = 0; i < expenseList.size(); i++){
-            GetExpenseResponseDTO getexpenseresponseDTO = new GetExpenseResponseDTO();
-            getexpenseresponseDTO.setExpense(expenseDTO.getExpense());
-            getexpenseresponseDTO.setAmount(expenseDTO.getAmount());
-            expenseList2.add(getexpenseresponseDTO);
-        }{
+            Expense expense = expenseList.get(i);
 
+            GetExpenseResponseDTO getexpenseresponseDTO = new GetExpenseResponseDTO();
+
+            getexpenseresponseDTO.setExpense(expense.getExpenseDescription());
+            getexpenseresponseDTO.setAmount(expense.getAmount());
+            expenseList2.add(getexpenseresponseDTO);
         }
 
-        return null; //expenseList2
+        return expenseList2; //expenseList2
     }
 }
