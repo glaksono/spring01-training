@@ -16,7 +16,7 @@ public class GetExpenseService implements IGetExpense{
     private IExpenseRepository expenseRepository;
 
     @Override
-    public List<GetExpenseResponseDTO> getExpense(GetExpenseRequestDTO expenseDTO) {
+    public List<GetExpenseResponseDTO> getExpense() {
         List<Expense> expenseList = expenseRepository.findAll();
 
         List<GetExpenseResponseDTO> expenseList2 = new ArrayList<GetExpenseResponseDTO>();
@@ -31,6 +31,6 @@ public class GetExpenseService implements IGetExpense{
             expenseList2.add(getexpenseresponseDTO);
         }
 
-        return expenseList2; //expenseList2
+        return expenseList2;
     }
 }

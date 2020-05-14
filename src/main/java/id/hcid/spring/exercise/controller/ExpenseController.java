@@ -26,7 +26,7 @@ public class ExpenseController {
     private IGetExpense getExpenseService;
 
     @PostMapping
-    public ResponseEntity<AddExpenseResponseDTO> addExpense(@RequestBody  AddExpenseRequestDTO data){
+    public ResponseEntity<AddExpenseResponseDTO> addExpense(@RequestBody  List<AddExpenseRequestDTO> data){
         AddExpenseResponseDTO result = addExpenseService.addExpense(data);
         return new ResponseEntity<AddExpenseResponseDTO>(result, HttpStatus.OK);
     }
@@ -34,9 +34,8 @@ public class ExpenseController {
     // Use this method for retrieving all the expenses here. Please use appropriate response / request model (if needed)
 
     @GetMapping
-    public ResponseEntity<List<GetExpenseResponseDTO>> getExpense(@RequestBody GetExpenseRequestDTO data){
-        List<GetExpenseResponseDTO> result = getExpenseService.getExpense(data);
-        return new ResponseEntity(result, HttpStatus.OK);
+    public ResponseEntity<List<GetExpenseResponseDTO>> getExpense(){
+//        GetExpenseResponseDTO result =  getExpenseService.getExpense(data);
+        return new ResponseEntity(getExpenseService.getExpense(), HttpStatus.OK);
     }
-
 }

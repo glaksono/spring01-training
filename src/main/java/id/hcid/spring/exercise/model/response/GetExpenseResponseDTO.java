@@ -1,7 +1,9 @@
 package id.hcid.spring.exercise.model.response;
 
 
-public class GetExpenseResponseDTO {
+import java.io.Serializable;
+
+public class GetExpenseResponseDTO implements Serializable {
     private String expense;
     private Long amount;
 
