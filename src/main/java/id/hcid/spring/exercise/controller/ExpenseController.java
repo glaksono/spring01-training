@@ -1,9 +1,7 @@
 package id.hcid.spring.exercise.controller;
 
 import id.hcid.spring.exercise.model.request.AddExpenseRequestDTO;
-import id.hcid.spring.exercise.model.request.GetExpenseRequestDTO;
 import id.hcid.spring.exercise.model.response.AddExpenseResponseDTO;
-import id.hcid.spring.exercise.model.response.GetExpenseResponseDTO;
 import id.hcid.spring.exercise.service.IAddExpense;
 import id.hcid.spring.exercise.service.IGetExpense;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -33,9 +31,14 @@ public class ExpenseController {
 
     // Use this method for retrieving all the expenses here. Please use appropriate response / request model (if needed)
 
+//    @GetMapping
+//    public ResponseEntity<List<GetExpenseResponseDTO>> getExpense(){
+////        GetExpenseResponseDTO result =  getExpenseService.getExpense(data);
+//        return new ResponseEntity(getExpenseService.getExpense(), HttpStatus.OK);
+//    }
+
     @GetMapping
-    public ResponseEntity<List<GetExpenseResponseDTO>> getExpense(){
-//        GetExpenseResponseDTO result =  getExpenseService.getExpense(data);
-        return new ResponseEntity(getExpenseService.getExpense(), HttpStatus.OK);
+    public ResponseEntity<Long> getExpenseByDate(){
+        return new ResponseEntity(getExpenseService.getExpenseByDate(), HttpStatus.OK);
     }
 }

@@ -1,6 +1,7 @@
 package id.hcid.spring.exercise.model.request;
 
 import java.io.Serializable;
+import java.util.Date;
 
 public class GetExpenseRequestDTO implements Serializable {
     private String expense;
