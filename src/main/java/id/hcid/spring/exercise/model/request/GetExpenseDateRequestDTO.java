@@ -1,10 +1,15 @@
 package id.hcid.spring.exercise.model.request;
 
+import com.fasterxml.jackson.annotation.JsonFormat;
+
 import java.io.Serializable;
 import java.util.Date;
 
 public class GetExpenseDateRequestDTO implements Serializable {
+    @JsonFormat(pattern="yyyy-MM-dd")
     private Date expenseFrom;
+
+    @JsonFormat(pattern="yyyy-MM-dd")
     private Date expenseTo;
 
     public Date getExpenseFrom() {
