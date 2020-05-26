@@ -1,6 +1,7 @@
 package id.hcid.spring.exercise.service;
 
 import id.hcid.spring.exercise.entity.Expense;
+import id.hcid.spring.exercise.model.request.GetExpenseDateRequestDTO;
 import id.hcid.spring.exercise.model.request.GetExpenseRequestDTO;
 import id.hcid.spring.exercise.model.response.GetExpenseDateResponseDTO;
 import id.hcid.spring.exercise.model.response.GetExpenseResponseDTO;
@@ -37,23 +38,14 @@ public class GetExpenseService implements IGetExpense{
     }
 
     @Override
-    public Long getExpenseByDate() {
-        List<Expense> expenseList = expenseRepository.findAll();
+    public GetExpenseDateResponseDTO getExpenseByDate(GetExpenseDateRequestDTO expenseDateRequestDTO) {
+        Long totalExpense = expenseRepository.expenseByDate(expenseDateRequestDTO.getExpenseFrom(), expenseDateRequestDTO.getExpenseTo());
 
-        Long expenseTotal = 0L;
+        GetExpenseDateResponseDTO response = new GetExpenseDateResponseDTO();
+        response.setExpenseFrom(expenseDateRequestDTO.getExpenseFrom());
+        response.setExpenseTo(expenseDateRequestDTO.getExpenseTo());
+        response.setExpenseTotal(totalExpense);
 
-        GetExpenseDateResponseDTO getExpenseDateResponseDTO = new GetExpenseDateResponseDTO();
-        Date expenseFrom = getExpenseDateResponseDTO.getExpenseFrom(); //
-        Date expenseTo = getExpenseDateResponseDTO.getExpenseTo(); //
-
-        for(int i = 0; i < expenseList.size(); i++){
-            Expense expense = expenseList.get(i);
-
-            if(expense.getExpenseOn().compareTo(expenseFrom) >= 0 && expense.getExpenseOn().compareTo(expenseTo) <= 0){
-                expenseTotal += expense.getAmount();
-            }
-        }
-
-        return expenseTotal;
+        return response;
     }
 }
