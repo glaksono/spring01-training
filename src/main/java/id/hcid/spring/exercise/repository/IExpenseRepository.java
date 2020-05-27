@@ -13,4 +13,7 @@ public interface IExpenseRepository extends JpaRepository<Expense, Long> {
 
     @Query(value = "SELECT SUM(amount) FROM expense WHERE expense_on BETWEEN ?1 AND ?2", nativeQuery = true)
     Long expenseByDate(Date expenseFrom, Date expenseTo);
+
+    @Query(value = "SELECT * FROM Expense WHERE expense_on BETWEEN ?1 AND ?2", nativeQuery = true)
+    List<Expense> expenseListByDate(Date expenseFrom, Date ExpenseTo);
 }

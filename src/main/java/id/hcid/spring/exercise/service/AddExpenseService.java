@@ -28,7 +28,7 @@ public class AddExpenseService implements IAddExpense {
         for(AddExpenseRequestDTO addExpense: expenseDto){
             Expense expense = new Expense();
             expense.setAmount(addExpense.getAmount());
-            expense.setExpenseDescription(addExpense.getExpense());
+            expense.setExpenseDescription(addExpense.getDescription());
             expense.setExpenseOn(new Date());
             expenses.add(expense);
         }

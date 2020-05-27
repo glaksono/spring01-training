@@ -3,15 +3,15 @@ package id.hcid.spring.exercise.model.request;
 import java.io.Serializable;
 
 public class AddExpenseRequestDTO implements Serializable {
-    private String expense;
+    private String description;
     private Long amount;
 
-    public String getExpense() {
-        return expense;
+    public String getDescription() {
+        return description;
     }
 
-    public void setExpense(String expense) {
-        this.expense = expense;
+    public void setDescription(String description) {
+        this.description = description;
     }
 
     public Long getAmount() {

@@ -2,8 +2,10 @@ package id.hcid.spring.exercise.service;
 
 import id.hcid.spring.exercise.entity.Expense;
 import id.hcid.spring.exercise.model.request.GetExpenseDateRequestDTO;
+import id.hcid.spring.exercise.model.request.GetExpenseListByDateRequestDTO;
 import id.hcid.spring.exercise.model.request.GetExpenseRequestDTO;
 import id.hcid.spring.exercise.model.response.GetExpenseDateResponseDTO;
+import id.hcid.spring.exercise.model.response.GetExpenseListByDateResponseDTO;
 import id.hcid.spring.exercise.model.response.GetExpenseResponseDTO;
 import id.hcid.spring.exercise.repository.IExpenseRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -29,8 +31,9 @@ public class GetExpenseService implements IGetExpense{
 
             GetExpenseResponseDTO getexpenseresponseDTO = new GetExpenseResponseDTO();
 
-            getexpenseresponseDTO.setExpense(expense.getExpenseDescription());
+            getexpenseresponseDTO.setDescription(expense.getExpenseDescription());
             getexpenseresponseDTO.setAmount(expense.getAmount());
+            getexpenseresponseDTO.setExpenseOn(expense.getExpenseOn());
             expenseList2.add(getexpenseresponseDTO);
         }
 
@@ -47,5 +50,25 @@ public class GetExpenseService implements IGetExpense{
         response.setExpenseTotal(totalExpense);
 
         return response;
+    }
+
+    @Override
+    public GetExpenseListByDateResponseDTO getExpenseListByDate(GetExpenseListByDateRequestDTO expenseListByDateRequestDTO) {
+        List<Expense> dataDB = expenseRepository.expenseListByDate(expenseListByDateRequestDTO.getRequestFrom(), expenseListByDateRequestDTO.getRequestTo());
+
+        GetExpenseListByDateResponseDTO expenseListByDateResponseDTO = new GetExpenseListByDateResponseDTO();
+
+        List<GetExpenseResponseDTO> dataTemp = new ArrayList<GetExpenseResponseDTO>();
+
+        for(Expense e: dataDB){
+            GetExpenseResponseDTO dto = new GetExpenseResponseDTO();
+            dto.setExpenseOn(e.getExpenseOn());
+            dto.setAmount(e.getAmount());
+            dto.setDescription(e.getExpenseDescription());
+            dataTemp.add(dto);
+        }
+        expenseListByDateResponseDTO.setExpense(dataTemp);
+
+        return expenseListByDateResponseDTO;
     }
 }

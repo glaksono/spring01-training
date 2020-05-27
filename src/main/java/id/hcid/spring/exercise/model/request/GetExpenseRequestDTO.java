@@ -4,15 +4,15 @@ import java.io.Serializable;
 import java.util.Date;
 
 public class GetExpenseRequestDTO implements Serializable {
-    private String expense;
+    private String description;
     private Long amount;
 
-    public String getExpense() {
-        return expense;
+    public String getDescription() {
+        return description;
     }
 
-    public void setExpense(String expense) {
-        this.expense = expense;
+    public void setDescription(String description) {
+        this.description = description;
     }
 
     public Long getAmount() {

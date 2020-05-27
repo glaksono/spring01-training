@@ -2,8 +2,10 @@ package id.hcid.spring.exercise.controller;
 
 import id.hcid.spring.exercise.model.request.AddExpenseRequestDTO;
 import id.hcid.spring.exercise.model.request.GetExpenseDateRequestDTO;
+import id.hcid.spring.exercise.model.request.GetExpenseListByDateRequestDTO;
 import id.hcid.spring.exercise.model.response.AddExpenseResponseDTO;
 import id.hcid.spring.exercise.model.response.GetExpenseDateResponseDTO;
+import id.hcid.spring.exercise.model.response.GetExpenseListByDateResponseDTO;
 import id.hcid.spring.exercise.model.response.GetExpenseResponseDTO;
 import id.hcid.spring.exercise.service.IAddExpense;
 import id.hcid.spring.exercise.service.IGetExpense;
@@ -43,5 +45,10 @@ public class ExpenseController {
     @GetMapping(path = "/date")
     public ResponseEntity<GetExpenseDateResponseDTO> getExpenseByDate(@RequestBody GetExpenseDateRequestDTO expenseDateRequestDTO){
         return new ResponseEntity(getExpenseService.getExpenseByDate(expenseDateRequestDTO), HttpStatus.OK); //from to
+    }
+
+    @GetMapping(path= "/date/list")
+    public ResponseEntity<GetExpenseListByDateResponseDTO> getExpenseListByDate(@RequestBody GetExpenseListByDateRequestDTO expenseListByDateRequestDTO){
+        return new ResponseEntity<GetExpenseListByDateResponseDTO>(getExpenseService.getExpenseListByDate(expenseListByDateRequestDTO), HttpStatus.OK);
     }
 }
