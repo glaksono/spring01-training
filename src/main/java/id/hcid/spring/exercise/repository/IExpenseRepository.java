@@ -11,6 +11,6 @@ public interface IExpenseRepository extends JpaRepository<Expense, Long> {
     @Override
     List<Expense> findAll();
 
-    @Query(value = "SELECT SUM(amount) FROM expense WHERE expenseOn BETWEEN ?1 AND ?2", nativeQuery = true)
+    @Query(value = "SELECT SUM(amount) FROM expense WHERE expense_on BETWEEN ?1 AND ?2", nativeQuery = true)
     Long expenseByDate(Date expenseFrom, Date expenseTo);
 }
