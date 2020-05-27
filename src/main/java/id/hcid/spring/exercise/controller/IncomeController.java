@@ -1,7 +1,11 @@
 package id.hcid.spring.exercise.controller;
 
 import id.hcid.spring.exercise.model.request.AddIncomeRequestDTO;
+import id.hcid.spring.exercise.model.request.GetIncomeDateRequestDTO;
+import id.hcid.spring.exercise.model.request.GetIncomeListByDateRequestDTO;
 import id.hcid.spring.exercise.model.response.AddIncomeResponseDTO;
+import id.hcid.spring.exercise.model.response.GetIncomeDateResponseDTO;
+import id.hcid.spring.exercise.model.response.GetIncomeListByDateResponseDTO;
 import id.hcid.spring.exercise.model.response.GetIncomeResponseDTO;
 import id.hcid.spring.exercise.service.IAddIncome;
 import id.hcid.spring.exercise.service.IGetIncome;
@@ -31,5 +35,15 @@ public class IncomeController {
     @GetMapping
     public ResponseEntity<List<GetIncomeResponseDTO>> getIncome(){
         return new ResponseEntity<List<GetIncomeResponseDTO>>(getIncomeService.getIncome(), HttpStatus.OK);
+    }
+
+    @GetMapping(path = "/date")
+    public ResponseEntity<GetIncomeDateResponseDTO> getIncomeByDate(@RequestBody GetIncomeDateRequestDTO incomeByDateRequestDTO){
+        return new ResponseEntity(getIncomeService.getIncomeByDate(incomeByDateRequestDTO), HttpStatus.OK);
+    }
+
+    @GetMapping(path="/date/list")
+    public ResponseEntity<GetIncomeListByDateResponseDTO> getIncomeListByDate(@RequestBody GetIncomeListByDateRequestDTO incomeListByDateRequestDTO){
+        return new ResponseEntity<GetIncomeListByDateResponseDTO>(getIncomeService.getIncomeListByDate(incomeListByDateRequestDTO), HttpStatus.OK);
     }
 }
