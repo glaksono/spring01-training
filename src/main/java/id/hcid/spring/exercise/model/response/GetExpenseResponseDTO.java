@@ -1,6 +1,8 @@
 package id.hcid.spring.exercise.model.response;
 
 
+import com.fasterxml.jackson.annotation.JsonFormat;
+
 import java.io.Serializable;
 import java.util.Date;
 
@@ -25,6 +27,7 @@ public class GetExpenseResponseDTO implements Serializable {
         this.amount = amount;
     }
 
+    @JsonFormat(pattern="yyyy-MM-dd")
     public Date getExpenseOn() {
         return expenseOn;
     }

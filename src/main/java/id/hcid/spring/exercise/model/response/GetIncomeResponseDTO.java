@@ -1,5 +1,7 @@
 package id.hcid.spring.exercise.model.response;
 
+import com.fasterxml.jackson.annotation.JsonFormat;
+
 import java.util.Date;
 
 public class GetIncomeResponseDTO {
@@ -7,6 +9,7 @@ public class GetIncomeResponseDTO {
     private Long amount;
     private String description;
 
+    @JsonFormat(pattern="yyyy-MM-dd")
     public Date getIncomeOn() {
         return incomeOn;
     }
